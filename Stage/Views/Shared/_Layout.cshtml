@@ -1,0 +1,95 @@
+﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+@*~  aide a trouver le chemin sans savoir la racine*@
+@*cette squelette retourne la page shared partage par tous les views du l'app *@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title> Stage @ViewBag.Title</title>
+
+    <link rel=" stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootswatch/spacelab/bootstrap.min.css" />
+   
+    <!-- Theme style  -->
+     <link rel="stylesheet" href="~/css/site.css">
+     <link rel="stylesheet" href="~/css/sb-admin-2.css">
+     <link rel="stylesheet" href="~/css/font-awesome/css/font-awesome.min.css">
+  
+    
+</head>
+<body>
+    
+    <div >
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <a class="nav navbar-brand" asp-controller="Home" asp-action="index"><i class="glyphicon glyphicon-globe" ></i></a>
+                <ul class="nav navbar-nav">
+@*if (User.Identity.IsAuthenticated) {*@
+                    <li>
+                        <a  asp-controller="Home" asp-action="DashBord" class="btn">
+                            <i class="glyphicon glyphicon-menu-hamburger"> DashBord</i>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Home" asp-action="Respance"class="btn">
+                            <i class="glyphicon glyphicon-send"> Respance</i>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Home" asp-action="Formulaire" class="btn">
+                            <i class="glyphicon glyphicon-edit"> NewForm</i>
+                        </a>
+                    </li>
+
+}
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+@*@if (User.Identity.IsAuthenticated)*@
+@*{*@
+                    <li>
+                        <a href="#" class="btn">
+                            <i class="glyphicon glyphicon-log-out">LOGOUT</i>
+                        </a>
+                    </li>
+@*}*@
+                    <li>
+                        <a asp-controller="Home" asp-action="Contact" class="btn">
+                            <i class="glyphicon glyphicon-envelope"> Contact us</i>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Home" asp-action="About" class="btn">
+                            <i class="glyphicon glyphicon-menu-down">Login</i>
+                        </a>
+                    </li>
+                </ul>
+            
+            </div>
+
+        </nav>
+
+        <div id="main" class="container-fluid">
+            @*retourne la page qui convient*@
+            @RenderBody();
+        </div>
+        <div id="footer" class="container-fluid">
+            <div class="nav navbar-inverse navbar-fixed-bottom">
+                <span class="text-info text-center"> <h4>&copy; Stage site 2017</h4></span>
+            </div>
+        </div>
+
+
+    </div>
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+    @* cette instruction est pour telecharger les scripts qui convient dans cette section  *@
+    @* "scripts est le nom du block a appeler "////"false pour dire que il les telechagers seuelement dans les pages necessaires" *@
+    @RenderSection("scripts", false);
+    <script type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/js/site.js"></script>
+    <script src="~/js/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/datatables-plugins/dataTables.bootstrap.min.js"></script>
+
+</body>
+</html>

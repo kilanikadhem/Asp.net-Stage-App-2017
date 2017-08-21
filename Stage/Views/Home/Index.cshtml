@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@foreach (var item in Model)
+{
+<div class="col-lg-6 col-lg-offset-2">
+    <div class="panel panel-default">
+        <div class="panel-heading ">
+           @item.sujet
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+           
+               
+            <form>
+                @foreach(var item1 in item.Questions)
+                {
+
+                    @item1.quest
+
+                    @foreach (var item2 in item1.repenses)
+                    {
+                        <div foreachss="radio"+ @item1.id>
+
+                            <label>
+                                <input type="radio" name="optionsRadios @item1.id"  id="optionsRadios1" value="option1" checked>@item2.contenu
+                            </label>
+                        </div>
+
+                    }
+                }
+
+                
+
+              
+             
+                     <input type="submit" value="submit" class="btn btn-success" />
+             </form>
+            <!-- /.table-responsive -->
+        </div>
+        <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+</div>
+}

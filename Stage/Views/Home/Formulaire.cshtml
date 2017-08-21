@@ -1,0 +1,148 @@
+﻿
+@model  Stage.ViewModels.FormulaireViewModel
+
+@{
+    ViewData["Title"] = "NewForm";
+    ViewData["date"] = DateTime.UtcNow;
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+<p>Use this area to make a new form .</p>
+@section scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+<script type='text/javascript'>
+    function addQuest() {
+        // Number of inputs to create
+        var number = document.getElementById("member").value;
+        // Container <div> where dynamic content will be placed
+        var container = document.getElementById("container");
+        // Clear previous contents of the container
+        while (container.hasChildNodes()) {
+            container.removeChild(container.lastChild);
+        }
+        for (i = 0; i < number; i++) {
+            // Append a node with a random text
+            container.appendChild(document.createTextNode("question  " + (i + 1)));
+            // Create an <input> element, set its type and name attributes
+            var input = document.createElement("input");
+            input.type = "text";
+            input.name = "member" + i;
+            input.className = "form-control";
+            container.appendChild(input);
+            container.appendChild(document.createTextNode("nombre des reps"));
+            
+            
+            // create an input element to save the number of respenses for each Quest 
+            var Rinput = document.createElement("input");
+            Rinput.type = "number";
+            Rinput.name = "Rnumb";
+            Rinput.id = "Rnumb"+i;
+            Rinput.value =0;
+            Rinput.className = "form-control";
+            container.appendChild(Rinput);
+
+            // Append a line break
+            container.appendChild(document.createElement("br"));
+            // create an input button  element to confirm the number of Questions 
+            var Binput = document.createElement("input");
+            Binput.className = "btn btn-primary";
+            Binput.type = "button";
+            Binput.id = "rep";
+            Binput.name = "rep";
+            Binput.value = "ajouter des reps";
+            Binput.text = "ajout";
+           
+            container.appendChild(Binput);
+            //creatin of the input's 
+            Binput.addEventListener("click", function () { 
+                
+                var space = document.getElementById("repcomponent");
+                while (space.hasChildNodes()) {
+                    space.removeChild(space.lastChild);
+                }
+                var numberR = 0;
+                for (k = 0; k < number; k++){
+                    numberR = numberR + Number(document.getElementById("Rnumb" + k).value);
+                    console.log(k);
+                    document.getElementById("Rnumb" + k).value = 0;
+                    
+                }
+                //var elements = document.getElementsByClassName("Rnumb");
+                //var number = 0;
+                //console.log(elements.length);
+                //for (var k = 0; k < elements.length; i++) {
+                //    number += elements[k].value;
+                //    console.log(number);
+                //}
+                console.log(numberR);
+                for (j = 0; j < numberR; j++) {
+                    
+                    var resp = document.createElement("input");
+                    space.appendChild(document.createTextNode("repense " + (j + 1)));
+                    resp.type = "text";
+                    resp.name = "resp" + i;
+                    resp.className = "form-control";
+
+                    space.appendChild(resp);
+                }
+               
+            });
+            container.appendChild(document.createElement("br"));
+            container.appendChild(document.createElement("br"));
+            container.appendChild(document.createElement("br"));
+
+
+            
+        }
+    }
+
+   
+</script>
+<div class="row">
+    <div class="col-lg-offset-2 col-lg-5">
+        <form method="post">
+            <span asp-validation-summary="ModelOnly"></span>
+            @if (ViewBag.userMessage != null)
+            {
+                <div> <span class="text-success">@ViewBag.userMessage</span></div>
+
+            }
+            <div class="form-group">
+                <label asp-for="sujet">sujet:</label>
+                <input asp-for="sujet" class="form-control" />
+                <span class="text-warning" asp-validation-for="sujet"></span>
+            </div>
+            <div class="form-group">
+                <label>Date Creation </label> <span class="text-warning">@ViewData["date"].ToString() </span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="nbreQuestion">nombre de question das le formulaire : max(20) </label>
+                <input type="number" asp-for="nbreQuestion" class="form-control" id="member" name="member" value="" />
+            </div>
+            <a href="#" id="filldetails" onclick="addQuest()" class="btn btn-primary">ajouter des questions</a>
+            <div id="container">
+
+
+            </div>
+
+
+            <br />
+            <br />
+            <br />
+            <br>
+            <a asp-controller="Home" asp-action="Formulaire" class="btn btn-default">Cancel</a>
+            <button type="submit" class="btn btn-primary">
+                <i class=" glyphicon glyphicon-copy"></i> Sign in
+            </button>
+        </form>
+
+    </div>
+    <div class=" col-lg-3" id="repcomponent">
+
+    </div>
+
+</div>

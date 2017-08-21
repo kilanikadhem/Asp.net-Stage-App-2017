@@ -1,0 +1,7 @@
+﻿{
+  "ConnectionStrings": {
+    "StageContext": "Server=(localdb)\\MSSQLLocalDb;DataBase=StageDb;Trusted_Connection=yes;MultipleActiveResultSets=True"
+
+  }
+
+}
