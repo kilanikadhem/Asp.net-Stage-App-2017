@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -8,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace Stage.Models
 {
-    public class StageContext : DbContext 
-    {
+    public class StageContext : DbContext
+    { 
         private IConfigurationRoot _config;
 
         public StageContext(IConfigurationRoot config, DbContextOptions option) : base(option)

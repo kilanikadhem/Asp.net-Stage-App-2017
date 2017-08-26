@@ -19,7 +19,7 @@ namespace Stage
                 .UseApplicationInsights()
                 .Build();
 
-            host.Run();
+           host.Run();
         }
     }
 }

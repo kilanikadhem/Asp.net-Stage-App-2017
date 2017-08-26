@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Stage.Controllers.api
 {
-   
+
     public class repenseController : Controller
     {
         private IStageRepository _sc;
@@ -27,7 +27,7 @@ namespace Stage.Controllers.api
         [HttpGet]
         [Route("api/repense/{quest?}/{form?}")]
 
-        public IActionResult GetrepByquestAndrep(String quest,String form)
+        public IActionResult GetrepByquestAndrep(String quest, String form)
         {
             return Ok(_sc.getrepenseByFormAndQuest(form, quest));
         }
@@ -36,27 +36,25 @@ namespace Stage.Controllers.api
         [Route("api/repense/{id?}")]
         public async Task<IActionResult> insertRepAsync(int id, [FromBody]repense r)
         {
-           
-                if (ModelState.IsValid)
+
+            if (ModelState.IsValid)
+            {
+
+                _sc.Addr(id, r);
+                if (await _sc.SaveChangesAsync())
                 {
-                
-                    _sc.Addr(id, r);
-                    if (await _sc.SaveChangesAsync())
-                    {
-                        return Created($"api/repense/{r.contenu}", r);
-                    }
+                    return Created($"api/repense/{r.contenu}", r);
                 }
-                return BadRequest("failed to save the answer");
-          
+            }
+            return BadRequest("failed to save the answer");
+
         }
 
         [HttpPut]
         [Route("api/repense/{id?}/{resp?}")]
-        public IActionResult updateRespense(int id , String resp)
+        public IActionResult updateRespense(int id, String resp)
         {
-            Debug.WriteLine("*********repense Repo**********");
-            Debug.WriteLine(id);
-            Debug.WriteLine(resp);
+           
             return Ok(_sc.updateRepense(id, resp));
         }
 
@@ -66,6 +64,12 @@ namespace Stage.Controllers.api
         {
             return Ok(_sc.DeleteRepense(id));
         }
-
+        [HttpPut]
+        [Route("api/repense/{id?}")]
+        public IActionResult incRep(int id)
+        {
+            return Ok(_sc.incRepens(id));
+         
+            }
     }
 }

@@ -1,10 +1,14 @@
 ﻿@{
-    ViewData["Title"] = "DashBord";
+    ViewData["Title"] = "DashBoard";
 }
-<h2>@ViewData["Title"].</h2>
-<h3>@ViewData["Message"]</h3>
 
-    <p>Use this area to provide DashBord(Stat nombre de personne this week,this day, nbre de formulaier on totale ).</p>
+<span class="page-header"></span>
+<h2 class="page-header">@ViewData["Title"].</h2>
+
+
+<div class="row">
+   
+    <span class="divider"></span>
     <div class="col-lg-3 col-md-6">
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -19,11 +23,7 @@
                 </div>
             </div>
             <a href="#">
-                <div class="panel-footer">
-                    <span class="pull-left">View Details</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
+
             </a>
         </div>
     </div>
@@ -41,11 +41,7 @@
                 </div>
             </div>
             <a href="#">
-                <div class="panel-footer">
-                    <span class="pull-left">View Details</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
+
             </a>
         </div>
     </div>
@@ -58,17 +54,13 @@
                         <i class="fa fa-check-square fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">124</div>
+                        <div class="huge">13</div>
                         <div>response this day !</div>
                     </div>
                 </div>
             </div>
             <a href="#">
-                <div class="panel-footer">
-                    <span class="pull-left">View Details</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
+
             </a>
         </div>
     </div>
@@ -80,42 +72,52 @@
                         <i class="fa fa-users fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">13</div>
+                        <div class="huge">124</div>
                         <div>response this week!</div>
                     </div>
                 </div>
             </div>
             <a href="#">
-                <div class="panel-footer">
-                    <span class="pull-left">View Details</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
+
             </a>
         </div>
     </div>
-
+    </div>
+    <div class="row">
     @* foreach avec le nombre de formualire *@
-<br />
-<br />
-<br />
-<div class="col-lg-8 col-lg-offset-2">
+    <br />
+    <br />
+    <br />
+    <div class="col-lg-8 col-lg-offset-2">
+       
+        @foreach (var item in Model.Formlaires)
+        {
+            TimeSpan j = DateTime.UtcNow - @item.date_creation;
+            TimeSpan k = @item.date_fin - @item.date_creation;
+            int pourcentage = (j.Days/k.Days)*100 ;
+            if (pourcentage > 100 )
+            {
+                pourcentage = 100;
 
-    @foreach (var item in Model.Formlaires)
-    {
-        <a href="#">
-            <div>
-                <p>
-                    <strong>@item.sujet </strong>
-                    <strong>@item.date_creation </strong>
-                    <span class="pull-right text-muted">Date de fin presque accomplie </span>
-                </p>
-                <div class="progress progress-striped active">
-                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                        <span class="sr-only">100(success)</span>
+            }
+            <a href="#">
+                <div>
+                   
+                    <h1></h1>
+                    <p>
+                        <strong>@item.sujet </strong>
+                        <strong>@item.date_creation </strong>
+                        <span class="pull-right text-muted">@pourcentage </span>
+                    </p>
+                    <div class="progress progress-striped active">
+                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:@pourcentage%">
+                            <span class="sr-only">100(success)</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </a>
-    }
-</div>   
+            </a>
+        }
+
+
+    </div>
+    </div>

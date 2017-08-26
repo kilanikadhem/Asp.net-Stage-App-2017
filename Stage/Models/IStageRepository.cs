@@ -29,6 +29,7 @@ namespace Stage.Models
         int getFormulairesCount();
         int getQuestionsCount();
         int getrespenseCount();
+        Formulaires incRepens(int id);
         void addF(Formulaires f);
         void Addq(int i, Question q);
         void Addr(int id, repense r);

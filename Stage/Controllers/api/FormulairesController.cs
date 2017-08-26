@@ -33,7 +33,7 @@ namespace Stage.Controllers.api
             }
             catch (Exception ex)
             {
-
+                Debug.WriteLine(ex.Message);
             }
             return BadRequest("no connection ");
         }
@@ -50,7 +50,7 @@ namespace Stage.Controllers.api
             }
             catch (Exception ex)
             {
-
+                Debug.WriteLine(ex.Message);
             }
             return BadRequest("no connection ");
         }
@@ -64,7 +64,7 @@ namespace Stage.Controllers.api
             }
             catch (Exception ex)
             {
-
+                Debug.WriteLine(ex.Message);
             }
             return BadRequest("no connection ");
         }

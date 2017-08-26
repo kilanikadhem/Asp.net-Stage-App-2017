@@ -1,90 +1,125 @@
 ﻿
 @{
-    ViewData["Title"] = "Respance";
+    ViewData["Title"] = "Responses";
+
 }
+<script type='text/javascript'>
+    function openModal(elem) {
+        document.getElementById("modalBody").innerHTML = "";
+        var title = $(elem).data('assigned-sujet');
+        console.log(title);
+        document.getElementById("modalHeader").innerText = title;
+        var date_c = $(elem).data('assigned-date');
+        console.log(date_c);
+        var date_f = $(elem).data('assigned-datefin');
+        console.log(date_f);
+        var nbrep = $(elem).data('assigned-nbrep');
+        console.log(nbrep);
+        document.getElementById("modalBody").innerHTML = "<h1>date de la creation</h1>" + date_c + "<h1>date de la fin </h1>" + date_f + "<br /><h1>nombres des participations</h1>"+nbrep+document.getElementById("modalBody").innerHTML;
+       
+    }
+        
+    </script>
 
 
+<div>
+<h2 class="page-header">@ViewData["Title"]</h2>
 
-
-
-
-<h2>@ViewData["Title"].</h2>
-<h3>@ViewData["Message"]</h3>
-<div class="col-lg-offset-4 ">
-
-    <label>Formulaire</label>
-   
 </div>
+<br />
+<br />
+<div class="row">
+    <table class="table table-striped table-hover col-lg-offset-1 col-lg-8">
 
-<table class="table col-lg-offset-1 col-lg-8">
-    
-    <thead>
-        <tr>
-            <th>Sujet Formulaire</th>
-            <th>date de creation </th>
-            <th>nbre de participations</th>
-            <th> </th>
-        </tr>
-    </thead>
-    <tbody>
-
-        @foreach (var item in Model)
-        { 
+        <thead>
             <tr>
-                <td>@item.sujet</td>
-                <td>@item.date_creation</td>
-                <td>@item.nbreParticipant</td>
-                <th><a class="btn btn-primary">View Stat</a>
-                   
-                
-                
-                </th>
+                <th>Sujet Formulaire</th>
+                <th>date de creation </th>
+                <th>nbre de participations</th>
+                <th> </th>
             </tr>
-        }
-    </tbody>
-</table>
-        <div class="fh5co-tab-content" data-content="4">
-            <div class="fh5co-content-inner">
-                <div class="row">
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <div class="col-md-4 col-sm-6 col-xs-12 text-center">
-                        <div class="chart" data-percent="90"><span><strong>JAVA</strong>90%</span></div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12 text-center">
-                        <div class="chart" data-percent="90"><span><strong>ASP.net core</strong>80%</span></div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12 text-center">
-                        <div class="chart" data-percent="90"><span><strong>SPRING</strong>70%</span></div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12 text-center">
-                        <div class="chart" data-percent="95"><span><strong>HTML5</strong>95%</span></div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12 text-center">
-                        <div class="chart" data-percent="93"><span><strong>CSS3</strong>93%</span></div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12 text-center">
-                        <div class="chart" data-percent="90"><span><strong>jQuery</strong>90%</span></div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-6 col-xs-12 text-center">
-                        <div class="chart" data-percent="89"><span><strong>PHP</strong>89%</span></div>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12 text-center">
-                        <div class="chart" data-percent="85"><span><strong>MySQL</strong>85%</span></div>
-                    </div>
+        </thead>
+        <tbody>
 
 
+            <!-- Modal content-->
+
+            @foreach (var item in Model)
+            {  
+
+                <tr>
+                    <td>@item.sujet</td>
+                    <td>@item.date_creation</td>
+                    <td>@item.nbreParticipant</td>
+                    <th>
+                       
+                        <div id="myModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title" id="modalHeader"></h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p id="modalBody">
+                                            <h2>Questions</h2>
+                                            @foreach(var item1 in item.Questions)
+                                            {
+                                                @item1.quest;
+                                                <br />
+
+                                            }
+
+                                        </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                         
+                       <div class="hidden"></div>
+                       
+                        <a class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="openModal(this)" 
+       data-assigned-sujet="@item.sujet" data-assigned-date="@item.date_creation" data-assigned-datefin="@item.date_fin" data-assigned-nbrep="@item.nbreParticipant">View Stat</a>
+                       
+                        
+
+                    </th>
+                </tr>
+               
+
+            }
+        </tbody>
+
+        </table>
+          
+    
 
 
-                </div>
-            </div>
+
+          
+            <!-- /.col-lg-12 -->
         </div>
 
-    <!-- /.col-lg-12 -->
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

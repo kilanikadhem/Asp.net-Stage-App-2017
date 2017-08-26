@@ -2,13 +2,13 @@
 @model  Stage.ViewModels.FormulaireViewModel
 
 @{
-    ViewData["Title"] = "NewForm";
+    ViewData["Title"] = "Nouveau formulaire";
     ViewData["date"] = DateTime.UtcNow;
 }
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
+<h2 class="page-header">@ViewData["Title"]</h2>
 
-<p>Use this area to make a new form .</p>
+
+
 @section scripts{
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>

@@ -164,6 +164,10 @@ namespace Stage.Models
 
         public void addF(Formulaires f)
         {
+            f.date_creation = DateTime.UtcNow.AddDays(-10);
+            f.date_fin = DateTime.UtcNow;
+            f.nbreParticipant = 0;
+            f.nbreQuestion = f.Questions.Count;
            _sc.Formulairess.Add(f);
             _sc.Questions.AddRange(f.Questions);
             
@@ -335,6 +339,28 @@ namespace Stage.Models
                 Debug.WriteLine(qu.contenu);
             }
             _sc.repenses.Add(r);
+        }
+
+        public Formulaires incRepens(int id)
+        {
+            var Allf = getAllFormulairesView();
+            foreach (var Form in Allf)
+            {
+                foreach (var Quest in Form.Questions)
+                {
+                    foreach (var rep in Quest.repenses)
+                    {
+                        if (rep.id == id)
+                        {
+                            rep.nbreChoisie += 1;
+                            Form.nbreParticipant += 1;
+                            _sc.SaveChanges();
+                            return Form;
+                        }
+                    }
+                }
+            }
+            return null;
         }
     }
 }

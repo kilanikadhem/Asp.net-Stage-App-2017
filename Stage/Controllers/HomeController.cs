@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Stage.Models;
 using Stage.ViewModels;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Stage.Controllers
 {
@@ -18,6 +19,8 @@ namespace Stage.Controllers
         {
             _sc = sc;
         }
+
+        
         public IActionResult Index()
         {
             var data = _sc.getAllFormulairesView();
@@ -32,13 +35,14 @@ namespace Stage.Controllers
 
             return View();
         }
-
+        
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
 
             return View();
         }
+      
         public IActionResult DashBord()
         {
             DashBordViewModel dbv = new DashBordViewModel();
@@ -52,14 +56,14 @@ namespace Stage.Controllers
 
             return View(dbv);
         }
-
+        
         public IActionResult Respance()
         {
             ViewData["Message"] = "Your application Respance page.";
-            var data = _sc.getAllFormulaires();
+            var data = _sc.getQuestionById();
             return View(data);
         }
-       
+        
         public IActionResult Formulaire()
         {
             

@@ -1,0 +1,9 @@
+c:\users\kadhem\documents\visual studio 2017\Projects\Stage\Stage\bin\Debug\netcoreapp1.1\Stage.deps.json
+c:\users\kadhem\documents\visual studio 2017\Projects\Stage\Stage\bin\Debug\netcoreapp1.1\Stage.runtimeconfig.json
+c:\users\kadhem\documents\visual studio 2017\Projects\Stage\Stage\bin\Debug\netcoreapp1.1\Stage.runtimeconfig.dev.json
+c:\users\kadhem\documents\visual studio 2017\Projects\Stage\Stage\bin\Debug\netcoreapp1.1\Stage.dll
+c:\users\kadhem\documents\visual studio 2017\Projects\Stage\Stage\bin\Debug\netcoreapp1.1\Stage.pdb
+c:\users\kadhem\documents\visual studio 2017\Projects\Stage\Stage\obj\Debug\netcoreapp1.1\Stage.csprojResolveAssemblyReference.cache
+c:\users\kadhem\documents\visual studio 2017\Projects\Stage\Stage\obj\Debug\netcoreapp1.1\Stage.AssemblyInfo.cs
+c:\users\kadhem\documents\visual studio 2017\Projects\Stage\Stage\obj\Debug\netcoreapp1.1\Stage.dll
+c:\users\kadhem\documents\visual studio 2017\Projects\Stage\Stage\obj\Debug\netcoreapp1.1\Stage.pdb

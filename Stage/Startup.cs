@@ -33,6 +33,7 @@ namespace Stage
             services.AddSingleton(Configuration);
             services.AddScoped<IStageRepository, StageRepository>();
             services.AddTransient<StageContextSeedData>();
+
             // Add framework services.
             services.AddMvc();
             // add DbContext
@@ -57,7 +58,7 @@ namespace Stage
             }
 
             app.UseStaticFiles();
-
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
